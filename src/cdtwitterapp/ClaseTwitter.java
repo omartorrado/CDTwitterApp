@@ -17,22 +17,32 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
 /**
- *
+ *Aqui estan los metodos que manejan las funciones de twitter
  * @author otorradomiguez
  */
 public class ClaseTwitter {
-
-    public void mensajeDirecto(Twitter twitter) {
+    
+    /**
+     * Envia Mensajes privados al usuario indicado
+     * @param twitter instancia de la clase twitter que llama al metodo
+     * @param destinatario destinatario del mensaje 
+     * @param mensaje Contenido del mensaje
+     */
+    public void mensajeDirecto(Twitter twitter, String destinatario, String mensaje) {
 
         DirectMessage message;
         try {
-            message = twitter.sendDirectMessage("@DelioMirland", "Puta mierda de twitter");
+            message = twitter.sendDirectMessage(destinatario, mensaje);
             System.out.println("Sent: " + message.getText() + " to @" + message.getRecipientScreenName());
         } catch (TwitterException ex) {
             Logger.getLogger(CDTwitterApp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    /**
+     * Muestra por consola tu timeline
+     * @param twitter instancia de la clase twitter que llama al metodo
+     */
     public void verTimeline(Twitter twitter) {
 
         try {
@@ -47,6 +57,11 @@ public class ClaseTwitter {
         }
     }
 
+    /**
+     * Crea un tweet
+     * @param twitter instancia de la clase twitter que llama al metodo
+     */
+    
     public void postearTweet(Twitter twitter) {
 
         try {
@@ -56,9 +71,13 @@ public class ClaseTwitter {
         }
     }
 
+    /**
+     * Busca tweets que contengan la palabra indicada
+     * @param twitter instancia de la clase twitter que llama al metodo
+     */
     public void buscar(Twitter twitter) {
         try {
-            Query query = new Query("#Galifornia");
+            Query query = new Query(JOptionPane.showInputDialog("¿Que quieres buscar?"));
             QueryResult result = twitter.search(query);
             for (Status status : result.getTweets()) {
                 System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
