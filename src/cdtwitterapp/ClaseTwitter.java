@@ -23,6 +23,11 @@ import twitter4j.TwitterFactory;
  */
 public class ClaseTwitter {
     
+    /**
+     * Este metodo instancia un objeto de la clase twitter y lo devuelve para
+     * que el resto de metodos puedan trabajar usandolo
+     * @return el objeto de la clase Twitter con los token del archivo twitter4j.properties
+     */
     public Twitter config(){
         Twitter twitter = new TwitterFactory().getInstance();
         return twitter;
