@@ -15,12 +15,18 @@ import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
 
 /**
  *Aqui estan los metodos que manejan las funciones de twitter
  * @author otorradomiguez
  */
 public class ClaseTwitter {
+    
+    public Twitter config(){
+        Twitter twitter = new TwitterFactory().getInstance();
+        return twitter;
+    }
     
     /**
      * Envia Mensajes privados al usuario indicado
